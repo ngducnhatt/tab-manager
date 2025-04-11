@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tab Manager</title>
+    <link rel="stylesheet" href="sidepanel.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header class="app-header">
+        <h1>Tab Manager</h1>
+        <button id="themeToggle" class="theme-toggle">
+          <i class="fas fa-moon"></i>
+        </button>
+      </header>
+
+      <div class="tab-menu">
+        <button class="tab-button active" data-tab="current">Current</button>
+        <button class="tab-button" data-tab="pinned">Pinned</button>
+        <button class="tab-button" data-tab="groups">Groups</button>
+      </div>
+
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search tabs..." />
+        <button id="clearSearch"><i class="fas fa-times"></i></button>
+        <button id="reloadTabs"><i class="fas fa-sync-alt"></i></button>
+      </div>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="currentTabPane">
+          <div class="tab-list" id="currentTabList"></div>
+        </div>
+
+        <div class="tab-pane" id="pinnedTabPane">
+          <div class="tab-list" id="pinnedTabList"></div>
+        </div>
+
+        <div class="tab-pane" id="groupsTabPane">
+          <button id="createGroup" class="create-group-btn">
+            <i class="fas fa-plus"></i> New Group
+          </button>
+          <div class="groups-list" id="groupsList"></div>
+        </div>
+      </div>
+
+      <footer class="app-footer">
+        <div class="copyright">© 2023 Tab Manager Extension</div>
+        <div class="social-links">
+          <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+        </div>
+      </footer>
+    </div>
+
+    <script src="sidepanel.js"></script>
+  </body>
+</html>
