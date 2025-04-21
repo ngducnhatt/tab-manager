@@ -1,0 +1,340 @@
+/* Định nghĩa biến màu cho chế độ sáng */
+:root {
+  --bg-color: #f4f7f6; /* Nền tổng thể */
+  --container-bg: #ffffff; /* Nền container nội dung */
+  --header-bg: linear-gradient(to right, #4a86e8, #6fa8dc); /* Gradient header */
+  --header-text-color: white;
+  --border-color: #e0e0e0; /* Viền nhẹ */
+  --separator-color: #eee; /* Đường phân cách list item */
+  --text-color: #333; /* Màu chữ chính */
+  --secondary-text-color: #555; /* Màu chữ phụ */
+  --hover-bg: #f8f8f8; /* Nền khi hover */
+  --active-bg: #eef2f1; /* Nền khi active (tùy chọn) */
+  --button-color: #888; /* Màu icon nút mặc định */
+  --button-hover-color: #555; /* Màu icon khi hover */
+  --search-border-color: #ccc;
+  --search-focus-shadow: rgba(74, 134, 232, 0.5);
+  --filter-btn-bg: #6fa8dc;
+  --filter-btn-hover-bg: #5b9bd5;
+  --filter-btn-active-bg: #3c78d8;
+  --pinned-color: #007bff; /* Màu cho tab/icon ghim */
+  --pinned-hover-color: #0056b3;
+  --star-color: #ffc107; /* Màu icon sao */
+  --star-hover-color: #ffae00;
+  --close-color: #dc3545; /* Màu icon đóng */
+  --close-hover-color: #c82333;
+  --scrollbar-thumb: #ccc;
+  --scrollbar-thumb-hover: #a0a0a0;
+}
+
+/* Định nghĩa biến màu cho chế độ tối */
+body.dark-mode {
+  --bg-color: #282c34; /* Nền tổng thể tối */
+  --container-bg: #3a404b; /* Nền container nội dung tối */
+  --header-bg: linear-gradient(to right, #1a202c, #282c34); /* Gradient header tối */
+  --header-text-color: #e0e0e0;
+  --border-color: #5a6270; /* Viền tối */
+  --separator-color: #4a515c; /* Đường phân cách list item tối */
+  --text-color: #e0e0e0; /* Màu chữ chính tối */
+  --secondary-text-color: #a0a0a0; /* Màu chữ phụ tối */
+  --hover-bg: #4a515c; /* Nền khi hover tối */
+  --active-bg: #5a6270; /* Nền khi active tối */
+  --button-color: #b0b0b0; /* Màu icon nút mặc định tối */
+  --button-hover-color: #e0e0e0; /* Màu icon khi hover tối */
+  --search-border-color: #5a6270;
+  --search-focus-shadow: rgba(74, 134, 232, 0.3); /* Shadow xanh nhạt hơn */
+  --filter-btn-bg: #4a515c;
+  --filter-btn-hover-bg: #5a6270;
+  --filter-btn-active-bg: #3a404b;
+  --pinned-color: #7abaff; /* Màu xanh sáng hơn cho tối */
+  --pinned-hover-color: #5a9bff;
+  --star-color: #ffd700; /* Vàng sáng hơn */
+  --star-hover-color: #ffc400;
+  --close-color: #ff6b6b; /* Đỏ sáng hơn */
+  --close-hover-color: #ff4f4f;
+  --scrollbar-thumb: #5a6270;
+  --scrollbar-thumb-hover: #7a8291;
+
+   /* Style cho input trong dark mode */
+   #searchInput {
+        background-color: #3a404b;
+        color: var(--text-color);
+        border-color: var(--search-border-color);
+   }
+    #searchInput::placeholder { /* Placeholder color */
+        color: var(--secondary-text-color);
+    }
+}
+
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: var(--bg-color); /* Sử dụng biến */
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  transition: background-color 0.3s ease; /* Hiệu ứng chuyển màu nền */
+}
+
+/* Style cho scrollbar */
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--bg-color); /* Màu nền scrollbar track */
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb); /* Màu thumb */
+  border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover); /* Màu thumb khi hover */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background-color: var(--container-bg); /* Sử dụng biến */
+    transition: background-color 0.3s ease; /* Hiệu ứng chuyển màu nền */
+}
+
+.header {
+  background: var(--header-bg); /* Sử dụng biến gradient */
+  color: var(--header-text-color); /* Sử dụng biến */
+  padding: 15px 10px;
+  text-align: center;
+  flex-shrink: 0;
+  position: relative; /* Để định vị nút toggle */
+}
+
+.header h1 {
+  font-size: 1.4em; /* Tăng kích thước tiêu đề header */
+  margin: 0 0 15px 0;
+  padding: 0;
+  font-weight: 600; /* Đậm hơn */
+}
+
+/* Style cho nút toggle dark mode trong header */
+.toggle-mode-btn {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: var(--header-text-color); /* Màu icon giống màu text header */
+    cursor: pointer;
+    font-size: 1.2em; /* Kích thước icon */
+    transition: color 0.2s ease, transform 0.1s ease;
+    padding: 5px; /* Thêm padding cho vùng click */
+}
+
+.toggle-mode-btn:hover {
+    color: rgba(255, 255, 255, 0.8); /* Hơi mờ khi hover */
+    transform: scale(1.1);
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Tăng khoảng cách */
+    margin-bottom: 20px; /* Tăng khoảng cách */
+}
+
+.filter-btn {
+    background-color: var(--filter-btn-bg); /* Sử dụng biến */
+    color: var(--header-text-color); /* Màu chữ nút lọc */
+    border: none;
+    border-radius: 20px; /* Bo tròn góc nhiều hơn */
+    padding: 7px 15px; /* Tăng padding */
+    cursor: pointer;
+    font-size: 0.9em; /* Tăng kích thước font */
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+    opacity: 0.9;
+}
+
+.filter-btn:hover {
+    background-color: var(--filter-btn-hover-bg); /* Sử dụng biến */
+    opacity: 1;
+}
+
+.filter-btn.active {
+    background-color: var(--filter-btn-active-bg); /* Sử dụng biến */
+    font-weight: bold;
+    opacity: 1;
+}
+
+
+.search-container {
+    margin-bottom: 20px; /* Tăng khoảng cách */
+}
+
+#searchInput {
+    width: calc(100% - 30px); /* Điều chỉnh chiều rộng */
+    padding: 10px 15px; /* Tăng padding */
+    border: 1px solid var(--search-border-color); /* Sử dụng biến */
+    border-radius: 25px; /* Bo tròn góc nhiều hơn */
+    font-size: 0.95em; /* Tăng kích thước font */
+    outline: none;
+    background-color: var(--container-bg); /* Sử dụng biến */
+    color: var(--text-color); /* Sử dụng biến */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+#searchInput:focus {
+    border-color: #4a86e8;
+    box-shadow: 0 0 8px var(--search-focus-shadow); /* Sử dụng biến shadow */
+}
+
+#searchInput::placeholder {
+    color: var(--secondary-text-color); /* Sử dụng biến màu placeholder */
+}
+
+
+.content {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid var(--border-color); /* Sử dụng biến */
+    margin: 0 10px 10px 10px; /* Điều chỉnh margin */
+    background-color: var(--container-bg); /* Sử dụng biến */
+    overflow-y: auto;
+    border-radius: 5px;
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.05); /* Đổ bóng nhẹ hơn */
+    transition: background-color 0.3s ease; /* Hiệu ứng chuyển màu */
+}
+
+/* Style cho scrollbar trong content */
+.content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.content::-webkit-scrollbar-track {
+  background: var(--container-bg); /* Màu nền scrollbar track */
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb); /* Màu thumb */
+  border-radius: 4px;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover); /* Màu thumb khi hover */
+}
+
+
+/* Style cho mỗi mục tab li - Đây là Flex Container chính */
+.content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.content li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding: 10px; /* Tăng padding */
+  border: none;
+  border-bottom: 1px solid var(--separator-color); /* Sử dụng biến */
+  border-radius: 0;
+  background-color: transparent; /* Nền trong suốt, dùng nền của content/hover */
+  box-shadow: none;
+  overflow: hidden;
+  transition: background-color 0.2s ease; /* Hiệu ứng hover */
+}
+
+.content li:last-child {
+    border-bottom: none;
+}
+
+.content li:hover {
+   background-color: var(--hover-bg); /* Sử dụng biến */
+}
+
+
+/* Style cho Favicon (là flex item trực tiếp của li) */
+.tab-favicon {
+    width: 20px; /* Tăng kích thước favicon */
+    height: 20px; /* Tăng kích thước favicon */
+    margin-right: 10px; /* Tăng khoảng cách */
+    flex-shrink: 0;
+    vertical-align: middle;
+    object-fit: contain;
+}
+
+
+/* Style cho tên tab (link, là flex item trực tiếp của li) */
+.content li a.tab-title {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 0;
+    text-decoration: none;
+    color: var(--text-color); /* Sử dụng biến */
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 1em; /* Tăng kích thước font */
+    transition: color 0.2s ease;
+}
+
+.content li a.tab-title:hover {
+    text-decoration: underline;
+    color: var(--pinned-color); /* Sử dụng màu ghim khi hover cho nổi bật */
+}
+
+/* Container cho các nút hành động (là flex item trực tiếp của li) */
+.tab-actions {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Tăng khoảng cách giữa các nút */
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px; /* Tăng padding cho vùng click */
+    font-size: 1.1em; /* Tăng kích thước icon */
+    line-height: 1;
+    color: var(--button-color); /* Sử dụng biến */
+    transition: color 0.2s ease, transform 0.1s ease;
+    outline: none;
+}
+
+.action-btn:hover {
+    color: var(--button-hover-color); /* Sử dụng biến */
+    transform: scale(1.1);
+}
+
+.action-btn:active {
+     transform: scale(0.9);
+}
+
+/* Màu sắc và biểu tượng cụ thể cho từng nút (sử dụng biến) */
+.action-btn.pin { color: var(--pinned-color); }
+.action-btn.pin:hover { color: var(--pinned-hover-color); }
+.action-btn.star { color: var(--star-color); }
+.action-btn.star:hover { color: var(--star-hover-color); }
+.action-btn.close { color: var(--close-color); }
+.action-btn.close:hover { color: var(--close-hover-color); }
+
+
+/* Style cho tab đã ghim */
+.content li a.pinned {
+    font-weight: bold;
+    color: var(--pinned-color); /* Sử dụng biến */
+}
+.action-btn.pin.is-pinned {
+    color: var(--pinned-hover-color); /* Màu đậm hơn khi đã ghim */
+}
